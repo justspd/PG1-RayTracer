@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>PG1: Zdrojový soubor triangle.h</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">PG1
+   
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Generováno programem Doxygen 1.8.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Hledat');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Hlavní&#160;stránka</span></a></li>
+      <li><a href="annotated.html"><span>Třídy</span></a></li>
+      <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Hledat" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Seznam&#160;souborů</span></a></li>
+      <li><a href="globals.html"><span>Symboly&#160;v&#160;souborech</span></a></li>
+    </ul>
+  </div>
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Vše</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Třídy</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Soubory</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funkce</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Proměnné</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">triangle.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef TRIANGLE_H_</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define TRIANGLE_H_</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 <span class="keyword">class </span><a class="code" href="class_surface.html" title="Struktura popisující trojúhelníkovou síť.">Surface</a>; <span class="comment">// dopředné deklarace třídy</span>
+<a name="l00005"></a>00005 
+<a name="l00013"></a><a class="code" href="class_triangle.html">00013</a> <span class="keyword">class </span><a class="code" href="class_triangle.html" title="Struktura popisující trojúhelník.">Triangle</a>
+<a name="l00014"></a>00014 {
+<a name="l00015"></a>00015 <span class="keyword">public</span>: 
+<a name="l00017"></a>00017 
+<a name="l00020"></a><a class="code" href="class_triangle.html#aaefe4ed500c07918d30c6f0e286332c5">00020</a>         <a class="code" href="class_triangle.html#aaefe4ed500c07918d30c6f0e286332c5" title="Výchozí konstruktor.">Triangle</a>() { }
+<a name="l00021"></a>00021 
+<a name="l00023"></a>00023 
+<a name="l00031"></a>00031         <a class="code" href="class_triangle.html#aaefe4ed500c07918d30c6f0e286332c5" title="Výchozí konstruktor.">Triangle</a>( <span class="keyword">const</span> <a class="code" href="struct_vertex.html" title="Struktura popisující všechny atributy vertexu.">Vertex</a> &amp; v0, <span class="keyword">const</span> <a class="code" href="struct_vertex.html" title="Struktura popisující všechny atributy vertexu.">Vertex</a> &amp; v1, <span class="keyword">const</span> <a class="code" href="struct_vertex.html" title="Struktura popisující všechny atributy vertexu.">Vertex</a> &amp; v2, <a class="code" href="class_surface.html" title="Struktura popisující trojúhelníkovou síť.">Surface</a> * <a class="code" href="class_triangle.html#a33de419aadf66a9095b7994314dafd6a" title="Vypočte obalovou strukturu zahrnující všechny tři vrcholy trojúhelníka.">surface</a> = NULL );
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033         <span class="comment">//void Print();</span>
+<a name="l00034"></a>00034 
+<a name="l00036"></a>00036 
+<a name="l00041"></a>00041         <a class="code" href="struct_vertex.html" title="Struktura popisující všechny atributy vertexu.">Vertex</a> <a class="code" href="class_triangle.html#a5f5a9774b75d7bdbd343c806016b5f0c" title="I-tý vrchol trojúhelníka.">vertex</a>( <span class="keyword">const</span> <span class="keywordtype">int</span> i );
+<a name="l00042"></a>00042 
+<a name="l00044"></a>00044 
+<a name="l00050"></a>00050         <a class="code" href="struct_vector3.html" title="Trojrozměrný (3D) vektor.">Vector3</a> <a class="code" href="class_triangle.html#a60f6a4d09a8637217e34cf9d6c8114ee" title="Vypočte normálu trojúhelníka v zadaném bodě.">normal</a>( <a class="code" href="struct_vector3.html" title="Trojrozměrný (3D) vektor.">Vector3</a> &amp; p, <a class="code" href="struct_vector2.html" title="Dvourozměrný (2D) vektor.">Vector2</a> * texture_coord = NULL );
+<a name="l00051"></a>00051 
+<a name="l00053"></a>00053 
+<a name="l00058"></a>00058         <a class="code" href="struct_vector3.html" title="Trojrozměrný (3D) vektor.">Vector3</a> <a class="code" href="class_triangle.html#a4e317c81ed2534a9f55437b6e73008ae" title="Baricentr trojúhelníka.">baricenter</a>();
+<a name="l00059"></a>00059 
+<a name="l00061"></a>00061 
+<a name="l00064"></a>00064         <span class="comment">//AABB bounds();</span>
+<a name="l00065"></a>00065 
+<a name="l00067"></a>00067 
+<a name="l00070"></a>00070         <a class="code" href="class_surface.html" title="Struktura popisující trojúhelníkovou síť.">Surface</a> * <a class="code" href="class_triangle.html#a33de419aadf66a9095b7994314dafd6a" title="Vypočte obalovou strukturu zahrnující všechny tři vrcholy trojúhelníka.">surface</a>();
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072 <span class="keyword">protected</span>:
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074 <span class="keyword">private</span>:
+<a name="l00075"></a>00075         <a class="code" href="struct_vertex.html" title="Struktura popisující všechny atributy vertexu.">Vertex</a> vertices_[3]; 
+<a name="l00076"></a>00076 };
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078 <span class="preprocessor">#endif</span>
+</pre></div></div><!-- contents -->
+
+
+<hr class="footer"/><address class="footer"><small>
+Generováno st 26. zář 2012 13.20:41 pro projekt PG1 programem &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.0
+</small></address>
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>PG1: Zdrojový soubor material.h</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">PG1
+   
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Generováno programem Doxygen 1.8.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Hledat');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Hlavní&#160;stránka</span></a></li>
+      <li><a href="annotated.html"><span>Třídy</span></a></li>
+      <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Hledat" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Seznam&#160;souborů</span></a></li>
+      <li><a href="globals.html"><span>Symboly&#160;v&#160;souborech</span></a></li>
+    </ul>
+  </div>
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Vše</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Třídy</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Soubory</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funkce</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Proměnné</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">material.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef MATERIAL_H_</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define MATERIAL_H_</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00007"></a>00007 <span class="preprocessor">#define NO_TEXTURES 1</span>
+<a name="l00008"></a>00008 <span class="preprocessor"></span>
+<a name="l00012"></a>00012 <span class="preprocessor">#define IOR_AIR static_cast&lt;TYPE_REAL&gt;( 1.000293 )</span>
+<a name="l00013"></a>00013 <span class="preprocessor"></span>
+<a name="l00017"></a>00017 <span class="preprocessor">#define IOR_WATER static_cast&lt;TYPE_REAL&gt;( 1.33 )</span>
+<a name="l00018"></a>00018 <span class="preprocessor"></span>
+<a name="l00026"></a><a class="code" href="class_material.html">00026</a> <span class="keyword">class </span><a class="code" href="class_material.html" title="Difuzní materiál.">Material</a>
+<a name="l00027"></a>00027 {
+<a name="l00028"></a>00028 <span class="keyword">public</span>: 
+<a name="l00030"></a>00030 
+<a name="l00033"></a>00033         <a class="code" href="class_material.html#a137e987401b63eb7c6c27c3e38bc74b5" title="Implicitní konstruktor.">Material</a>();
+<a name="l00034"></a>00034 
+<a name="l00036"></a>00036 
+<a name="l00048"></a>00048         <a class="code" href="class_material.html#a137e987401b63eb7c6c27c3e38bc74b5" title="Implicitní konstruktor.">Material</a>( std::string &amp; name, <span class="keyword">const</span> <a class="code" href="struct_vector3.html" title="Trojrozměrný (3D) vektor.">Vector3</a> &amp; <a class="code" href="class_material.html#a4b85f087a1b46406ead10f4c3e099e02">ambient</a>, <span class="keyword">const</span> <a class="code" href="struct_vector3.html" title="Trojrozměrný (3D) vektor.">Vector3</a> &amp; <a class="code" href="class_material.html#ad553093f4cb3c1e190e44017415d6b2e">diffuse</a>,
+<a name="l00049"></a>00049                 <span class="keyword">const</span> <a class="code" href="struct_vector3.html" title="Trojrozměrný (3D) vektor.">Vector3</a> &amp; <a class="code" href="class_material.html#a15d250f99e85f4fcc1aa432da4848c9a">specular</a>, <span class="keyword">const</span> TYPE_REAL <a class="code" href="class_material.html#afdc0f4ef363552f2f32d17bb9a03e911">shininess</a>, <span class="keyword">const</span> TYPE_REAL <a class="code" href="class_material.html#a7db7bc72c9ab5830803dd3bba3707310">ior</a>,
+<a name="l00050"></a>00050                 <a class="code" href="class_texture.html" title="Třída popisující texturu.">Texture</a> ** textures = NULL, <span class="keyword">const</span> <span class="keywordtype">int</span> no_textures = 0 );
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052         <span class="comment">//void Print();</span>
+<a name="l00053"></a>00053 
+<a name="l00055"></a>00055 
+<a name="l00058"></a>00058         <span class="keywordtype">void</span> <a class="code" href="class_material.html#a97755193fc8762ee9275f258c1aceac3" title="Nastaví název materiálu.">set_name</a>( <span class="keyword">const</span> <span class="keywordtype">char</span> * name );
+<a name="l00059"></a>00059 
+<a name="l00061"></a>00061 
+<a name="l00064"></a>00064         std::string <a class="code" href="class_material.html#af1a8a5259ebd1c6410ff8d0715da103d" title="Vrátí název materiálu.">get_name</a>() <span class="keyword">const</span>;
+<a name="l00065"></a>00065 
+<a name="l00067"></a>00067 
+<a name="l00071"></a>00071         <span class="keywordtype">void</span> <a class="code" href="class_material.html#a9eb8900f7711f9981363bfedb26ae1fb" title="Nastaví texturu.">set_texture</a>( <span class="keyword">const</span> <span class="keywordtype">int</span> slot, <a class="code" href="class_texture.html" title="Třída popisující texturu.">Texture</a> * texture );
+<a name="l00072"></a>00072 
+<a name="l00074"></a>00074 
+<a name="l00078"></a>00078         <a class="code" href="class_texture.html" title="Třída popisující texturu.">Texture</a> * <a class="code" href="class_material.html#a7af0c2e2eb223a2be179bfdce76b6386" title="Vrátí texturu.">get_texture</a>( <span class="keyword">const</span> <span class="keywordtype">int</span> slot ) <span class="keyword">const</span>;
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080 <span class="keyword">public</span>:
+<a name="l00081"></a><a class="code" href="class_material.html#a4b85f087a1b46406ead10f4c3e099e02">00081</a>         <a class="code" href="struct_vector3.html" title="Trojrozměrný (3D) vektor.">Vector3</a> <a class="code" href="class_material.html#a4b85f087a1b46406ead10f4c3e099e02">ambient</a>; 
+<a name="l00082"></a><a class="code" href="class_material.html#ad553093f4cb3c1e190e44017415d6b2e">00082</a>         <a class="code" href="struct_vector3.html" title="Trojrozměrný (3D) vektor.">Vector3</a> <a class="code" href="class_material.html#ad553093f4cb3c1e190e44017415d6b2e">diffuse</a>; 
+<a name="l00083"></a><a class="code" href="class_material.html#a15d250f99e85f4fcc1aa432da4848c9a">00083</a>         <a class="code" href="struct_vector3.html" title="Trojrozměrný (3D) vektor.">Vector3</a> <a class="code" href="class_material.html#a15d250f99e85f4fcc1aa432da4848c9a">specular</a>; 
+<a name="l00085"></a><a class="code" href="class_material.html#afdc0f4ef363552f2f32d17bb9a03e911">00085</a>         TYPE_REAL <a class="code" href="class_material.html#afdc0f4ef363552f2f32d17bb9a03e911">shininess</a>; 
+<a name="l00087"></a><a class="code" href="class_material.html#a94110a71f36fff1bcafd4259a9cf1221">00087</a>         TYPE_REAL <a class="code" href="class_material.html#a94110a71f36fff1bcafd4259a9cf1221">reflectivity</a>; 
+<a name="l00088"></a><a class="code" href="class_material.html#a7db7bc72c9ab5830803dd3bba3707310">00088</a>         TYPE_REAL <a class="code" href="class_material.html#a7db7bc72c9ab5830803dd3bba3707310">ior</a>; 
+<a name="l00090"></a><a class="code" href="class_material.html#a3d9a68917edd4965f62464b7768956d3">00090</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> <a class="code" href="class_material.html#a3d9a68917edd4965f62464b7768956d3">kDiffuseMapSlot</a>; 
+<a name="l00092"></a>00092 <span class="keyword">private</span>:
+<a name="l00093"></a>00093         <a class="code" href="class_texture.html" title="Třída popisující texturu.">Texture</a> * textures_[NO_TEXTURES]; 
+<a name="l00095"></a>00095         std::string name_; 
+<a name="l00096"></a>00096 };
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098 <span class="preprocessor">#endif</span>
+</pre></div></div><!-- contents -->
+
+
+<hr class="footer"/><address class="footer"><small>
+Generováno st 26. zář 2012 13.20:41 pro projekt PG1 programem &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.0
+</small></address>
+
+</body>
+</html>

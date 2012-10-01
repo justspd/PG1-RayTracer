@@ -1,0 +1,31 @@
+\form#0:$\left<0, 1\right>^3$
+\form#1:$\ge 0$
+\form#2:$\mathbf{i}$
+\form#3:$\mathbf{j}$
+\form#4:$\mathbf{k}$
+\form#5:$\mathbf{q}$
+\form#6:$w + x\mathbf{i} + y\mathbf{j} + z\mathbf{k}$
+\form#7:$\mathbf{q}= (w, \mathbf{v}$
+\form#8:$w \in \mathbb{R}$
+\form#9:$\mathbf{v}=(x, y, z)$
+\form#10:$\mathbf{v}$
+\form#11:$\mathbb{R}^3$
+\form#12:$\mathbf{|q|}=\sqrt{\mathbf{q} \={\mathbf{q}}$
+\form#13:$\mathbf{|q|}^2=\mathbf{q} \={\mathbf{q}$
+\form#14:$\={\mathbf{q}$
+\form#15:$\mathbf{v}=(x,y,z)$
+\form#16:$(x,y,z)$
+\form#17:$(u,v)\in\left<0,1\right>^2$
+\form#18:$\mathbf{v}=\mathbf{0}$
+\form#19:$\mathbf{v}=(x,y)$
+\form#20:$\mathbf{||v||}=\sqrt{x^2+y^2}$
+\form#21:$\mathbf{||v||^2}=x^2+y^2$
+\form#22:$\mathbf{u}_x \mathbf{v}_y + \mathbf{u}_y \mathbf{v}_x$
+\form#23:$2\times2$
+\form#24:$(\mathbf{u}_y, -\mathbf{u}_x)$
+\form#25:$\mathbf{u}_x \mathbf{v}_x + \mathbf{u}_y \mathbf{v}_y)$
+\form#26:$\phi$
+\form#27:$\mathbf{||v||}=\sqrt{x^2+y^2+z^2}$
+\form#28:$\mathbf{||v||^2}=x^2+y^2+z^2$
+\form#29:$(\mathbf{u}_x \mathbf{v}_z - \mathbf{u}_z \mathbf{v}_y, \mathbf{u}_z \mathbf{v}_x - \mathbf{u}_x \mathbf{v}_z, \mathbf{u}_x \mathbf{v}_y - \mathbf{u}_y \mathbf{v}_x)$
+\form#30:$\mathbf{u}_x \mathbf{v}_x + \mathbf{u}_y \mathbf{v}_y + \mathbf{u}_z \mathbf{v}_z)$

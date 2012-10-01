@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>PG1: Dokumentace souboru objloader.cpp</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">PG1
+   
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Generováno programem Doxygen 1.8.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Hledat');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Hlavní&#160;stránka</span></a></li>
+      <li><a href="annotated.html"><span>Třídy</span></a></li>
+      <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Hledat" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Seznam&#160;souborů</span></a></li>
+      <li><a href="globals.html"><span>Symboly&#160;v&#160;souborech</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Vše</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Třídy</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Soubory</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funkce</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Proměnné</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div>
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Funkce</a>  </div>
+  <div class="headertitle">
+<div class="title">Dokumentace souboru objloader.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Načítání Wavefront OBJ souborů. <a href="http://en.wikipedia.org/wiki/Wavefront_.obj_file">http://en.wikipedia.org/wiki/Wavefront_.obj_file</a>.  
+<a href="#details">...</a></p>
+<div class="textblock"><code>#include &quot;stdafx.h&quot;</code><br/>
+</div><table class="memberdecls">
+<tr><td colspan="2"><h2><a name="func-members"></a>
+Funkce</h2></td></tr>
+<tr class="memitem:a801afc469747f1ecb69bf98cc5380168"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="objloader_8cpp.html#a801afc469747f1ecb69bf98cc5380168">LoadMTL</a> (const char *file_name, const char *path, std::vector&lt; <a class="el" href="class_material.html">Material</a> * &gt; &amp;materials)</td></tr>
+<tr class="memdesc:a801afc469747f1ecb69bf98cc5380168"><td class="mdescLeft">&#160;</td><td class="mdescRight">Načte materiály z MTL souboru <em>file_name</em>. Soubor <em>file_name</em> se musí nacházet v cestě <em>path</em>. Načtené materiály budou vráceny přes pole <em>materials</em>.  <a href="#a801afc469747f1ecb69bf98cc5380168"></a><br/></td></tr>
+<tr class="memitem:a9fb418dacd94bfc2f76f5124b540d9a3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="objloader_8cpp.html#a9fb418dacd94bfc2f76f5124b540d9a3">LoadOBJ</a> (const char *file_name, <a class="el" href="struct_vector3.html">Vector3</a> &amp;default_color, std::vector&lt; <a class="el" href="class_surface.html">Surface</a> * &gt; &amp;surfaces, std::vector&lt; <a class="el" href="class_material.html">Material</a> * &gt; &amp;materials)</td></tr>
+<tr class="memdesc:a9fb418dacd94bfc2f76f5124b540d9a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Načte geometrii z OBJ souboru <em>file_name</em>.  <a href="#a9fb418dacd94bfc2f76f5124b540d9a3"></a><br/></td></tr>
+</table>
+<hr/><a name="details" id="details"></a><h2>Detailní popis</h2>
+<div class="textblock"><p>Načítání Wavefront OBJ souborů. <a href="http://en.wikipedia.org/wiki/Wavefront_.obj_file">http://en.wikipedia.org/wiki/Wavefront_.obj_file</a>. </p>
+</div><hr/><h2>Dokumentace funkcí</h2>
+<a class="anchor" id="a801afc469747f1ecb69bf98cc5380168"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="objloader_8cpp.html#a801afc469747f1ecb69bf98cc5380168">LoadMTL</a> </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_material.html">Material</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>materials</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Načte materiály z MTL souboru <em>file_name</em>. Soubor <em>file_name</em> se musí nacházet v cestě <em>path</em>. Načtené materiály budou vráceny přes pole <em>materials</em>. </p>
+<dl class="params"><dt><b>Parametry:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file_name</td><td>název MTL souboru včetně přípony. </td></tr>
+    <tr><td class="paramname">path</td><td>cesta k zadanému souboru. </td></tr>
+    <tr><td class="paramname">materials</td><td>pole materiálů, do kterého se budou ukládat načtené materiály. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9fb418dacd94bfc2f76f5124b540d9a3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="objloader_8cpp.html#a9fb418dacd94bfc2f76f5124b540d9a3">LoadOBJ</a> </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_vector3.html">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>default_color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_surface.html">Surface</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>surfaces</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_material.html">Material</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>materials</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Načte geometrii z OBJ souboru <em>file_name</em>. </p>
+<dl class="section note"><dt>Poznámka:</dt><dd>Při exportu z 3ds max je nutné nastavit systémové jednotky na metry: Customize -&gt; Units Setup Metric (Meters) System Unit Setup -&gt; 1 Unit = 1,0 m a zaškrtnout Respect System Units in File </dd></dl>
+<dl class="section see"><dt>Viz také:</dt><dd></dd></dl>
+<dl class="params"><dt><b>Parametry:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file_name</td><td>úplná cesta k OBJ souboru včetně přípony. </td></tr>
+    <tr><td class="paramname">default_color</td><td>výchozí barva vertexu. </td></tr>
+    <tr><td class="paramname">surfaces</td><td>pole ploch, do kterého se budou ukládat načtené plochy. </td></tr>
+    <tr><td class="paramname">materials</td><td>pole materiálů, do kterého se budou ukládat načtené materiály. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>buffery pro načítání řetězců </p>
+
+</div>
+</div>
+</div><!-- contents -->
+
+
+<hr class="footer"/><address class="footer"><small>
+Generováno st 26. zář 2012 13.20:41 pro projekt PG1 programem &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.0
+</small></address>
+
+</body>
+</html>

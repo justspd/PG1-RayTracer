@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>PG1: Zdrojový soubor vertex.h</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">PG1
+   
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Generováno programem Doxygen 1.8.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Hledat');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Hlavní&#160;stránka</span></a></li>
+      <li><a href="annotated.html"><span>Třídy</span></a></li>
+      <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Hledat" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Seznam&#160;souborů</span></a></li>
+      <li><a href="globals.html"><span>Symboly&#160;v&#160;souborech</span></a></li>
+    </ul>
+  </div>
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Vše</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Třídy</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Soubory</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funkce</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Proměnné</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">vertex.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef VERTEX_H_</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define VERTEX_H_</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00007"></a>00007 <span class="preprocessor">#define NO_TEXTURE_COORDS 1</span>
+<a name="l00008"></a>00008 <span class="preprocessor"></span>
+<a name="l00016"></a><a class="code" href="struct_vertex.html">00016</a> <span class="keyword">struct </span><span class="comment">/*ALIGN*/</span> <a class="code" href="struct_vertex.html" title="Struktura popisující všechny atributy vertexu.">Vertex</a>
+<a name="l00017"></a>00017 {
+<a name="l00018"></a>00018 <span class="keyword">public</span>:
+<a name="l00019"></a><a class="code" href="struct_vertex.html#a7aed0e6457d927a6e248703d3131bde9">00019</a>         <a class="code" href="struct_vector3.html" title="Trojrozměrný (3D) vektor.">Vector3</a> <a class="code" href="struct_vertex.html#a7aed0e6457d927a6e248703d3131bde9">position</a>; 
+<a name="l00020"></a><a class="code" href="struct_vertex.html#adce2d4b3d1191c69328519bdf231c344">00020</a>         <a class="code" href="struct_vector3.html" title="Trojrozměrný (3D) vektor.">Vector3</a> <a class="code" href="struct_vertex.html#adce2d4b3d1191c69328519bdf231c344">normal</a>; 
+<a name="l00021"></a><a class="code" href="struct_vertex.html#afa2fd5bff16fbe3926b3a728f30da3fe">00021</a>         <a class="code" href="struct_vector3.html" title="Trojrozměrný (3D) vektor.">Vector3</a> <a class="code" href="struct_vertex.html#afa2fd5bff16fbe3926b3a728f30da3fe">color</a>; 
+<a name="l00022"></a><a class="code" href="struct_vertex.html#a910d56e434b9a0effd0d87abb8416ae1">00022</a>         <a class="code" href="struct_vector2.html" title="Dvourozměrný (2D) vektor.">Vector2</a> <a class="code" href="struct_vertex.html#a910d56e434b9a0effd0d87abb8416ae1">texture_coords</a>[NO_TEXTURE_COORDS]; 
+<a name="l00024"></a>00024         <span class="keywordtype">char</span> pad[4]; <span class="comment">// doplnění na 48 bytů, mělo by to mít alespoň 4 byty, aby se sem vešel ukazatel</span>
+<a name="l00025"></a>00025 
+<a name="l00027"></a>00027 
+<a name="l00030"></a><a class="code" href="struct_vertex.html#a97488994a2482d70da74e1b91d40e169">00030</a>         <a class="code" href="struct_vertex.html#a97488994a2482d70da74e1b91d40e169" title="Výchozí konstruktor.">Vertex</a>() { }
+<a name="l00031"></a>00031 
+<a name="l00033"></a>00033 
+<a name="l00041"></a>00041         <a class="code" href="struct_vertex.html#a97488994a2482d70da74e1b91d40e169" title="Výchozí konstruktor.">Vertex</a>( <span class="keyword">const</span> <a class="code" href="struct_vector3.html" title="Trojrozměrný (3D) vektor.">Vector3</a> &amp; <a class="code" href="struct_vertex.html#a7aed0e6457d927a6e248703d3131bde9">position</a>, <span class="keyword">const</span> <a class="code" href="struct_vector3.html" title="Trojrozměrný (3D) vektor.">Vector3</a> &amp; <a class="code" href="struct_vertex.html#adce2d4b3d1191c69328519bdf231c344">normal</a>, <a class="code" href="struct_vector3.html" title="Trojrozměrný (3D) vektor.">Vector3</a> &amp; <a class="code" href="struct_vertex.html#afa2fd5bff16fbe3926b3a728f30da3fe">color</a>, <a class="code" href="struct_vector2.html" title="Dvourozměrný (2D) vektor.">Vector2</a> * <a class="code" href="struct_vertex.html#a910d56e434b9a0effd0d87abb8416ae1">texture_coords</a> = NULL );
+<a name="l00042"></a>00042 };
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044 <span class="preprocessor">#endif</span>
+</pre></div></div><!-- contents -->
+
+
+<hr class="footer"/><address class="footer"><small>
+Generováno st 26. zář 2012 13.20:41 pro projekt PG1 programem &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.0
+</small></address>
+
+</body>
+</html>

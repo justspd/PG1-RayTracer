@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>PG1: Zdrojový soubor color4.h</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">PG1
+   
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Generováno programem Doxygen 1.8.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Hledat');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Hlavní&#160;stránka</span></a></li>
+      <li><a href="annotated.html"><span>Třídy</span></a></li>
+      <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Hledat" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Seznam&#160;souborů</span></a></li>
+      <li><a href="globals.html"><span>Symboly&#160;v&#160;souborech</span></a></li>
+    </ul>
+  </div>
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Vše</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Třídy</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Soubory</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funkce</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Proměnné</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">color4.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef COLOR4_H_</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define COLOR4_H_</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00017"></a><a class="code" href="struct_color4.html">00017</a> <span class="keyword">struct </span><span class="comment">/*ALIGN*/</span> <a class="code" href="struct_color4.html" title="RGBA barva.">Color4</a>
+<a name="l00018"></a>00018 {
+<a name="l00019"></a>00019 <span class="keyword">public</span>:
+<a name="l00020"></a>00020         <span class="keyword">union   </span><span class="comment">// anonymní unie</span>
+<a name="l00021"></a>00021         {
+<a name="l00022"></a>00022                 <span class="keyword">struct</span>
+<a name="l00023"></a>00023                 {
+<a name="l00024"></a><a class="code" href="struct_color4.html#ae3e56dea079585c747d61c58c5678a9d">00024</a>                         TYPE_REAL <a class="code" href="struct_color4.html#ae3e56dea079585c747d61c58c5678a9d">r</a>; 
+<a name="l00025"></a><a class="code" href="struct_color4.html#ab01f91705633c0601e1ccc1ad34bf915">00025</a>                         TYPE_REAL <a class="code" href="struct_color4.html#ab01f91705633c0601e1ccc1ad34bf915">g</a>; 
+<a name="l00026"></a><a class="code" href="struct_color4.html#a3c2d7dc7623271745b19ea42dc5850cd">00026</a>                         TYPE_REAL <a class="code" href="struct_color4.html#a3c2d7dc7623271745b19ea42dc5850cd">b</a>; 
+<a name="l00027"></a><a class="code" href="struct_color4.html#a2b49e738f00f809e03443d67a234bb97">00027</a>                         TYPE_REAL <a class="code" href="struct_color4.html#a2b49e738f00f809e03443d67a234bb97">a</a>; 
+<a name="l00028"></a>00028                 };
+<a name="l00029"></a>00029 
+<a name="l00030"></a><a class="code" href="struct_color4.html#ad4d59c71b7407930f7ff7da114e18671">00030</a>                 TYPE_REAL <a class="code" href="struct_color4.html#ad4d59c71b7407930f7ff7da114e18671">data</a>[3]; 
+<a name="l00031"></a>00031         };
+<a name="l00032"></a>00032 
+<a name="l00034"></a>00034 
+<a name="l00037"></a><a class="code" href="struct_color4.html#a6962693d334831c2f8920164438b8598">00037</a>         <a class="code" href="struct_color4.html#a6962693d334831c2f8920164438b8598" title="Výchozí konstruktor.">Color4</a>() : <a class="code" href="struct_color4.html#ae3e56dea079585c747d61c58c5678a9d">r</a>( 0 ), <a class="code" href="struct_color4.html#ab01f91705633c0601e1ccc1ad34bf915">g</a>( 0 ), <a class="code" href="struct_color4.html#a3c2d7dc7623271745b19ea42dc5850cd">b</a>( 0 ), <a class="code" href="struct_color4.html#a2b49e738f00f809e03443d67a234bb97">a</a>( 0 ) { }
+<a name="l00038"></a>00038 
+<a name="l00040"></a>00040 
+<a name="l00048"></a><a class="code" href="struct_color4.html#aa54f054928bb2afce9ab180c5cd28ed0">00048</a>         <a class="code" href="struct_color4.html#aa54f054928bb2afce9ab180c5cd28ed0" title="Obecný konstruktor.">Color4</a>( <span class="keyword">const</span> TYPE_REAL <a class="code" href="struct_color4.html#ae3e56dea079585c747d61c58c5678a9d">r</a>, <span class="keyword">const</span> TYPE_REAL <a class="code" href="struct_color4.html#ab01f91705633c0601e1ccc1ad34bf915">g</a>, <span class="keyword">const</span> TYPE_REAL <a class="code" href="struct_color4.html#a3c2d7dc7623271745b19ea42dc5850cd">b</a>, <span class="keyword">const</span> TYPE_REAL <a class="code" href="struct_color4.html#a2b49e738f00f809e03443d67a234bb97">a</a> ) : r( r ), g( g ), b( b ), a( a ) { }
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050         <span class="comment">// --- operátory ------</span>
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052         <span class="keyword">friend</span> <a class="code" href="struct_color4.html" title="RGBA barva.">Color4</a> operator+( <span class="keyword">const</span> <a class="code" href="struct_color4.html" title="RGBA barva.">Color4</a> &amp; c1, <span class="keyword">const</span> <a class="code" href="struct_color4.html" title="RGBA barva.">Color4</a> &amp; c2 );
+<a name="l00053"></a>00053         
+<a name="l00054"></a>00054         <span class="keyword">friend</span> <a class="code" href="struct_color4.html" title="RGBA barva.">Color4</a> operator*( <span class="keyword">const</span> <a class="code" href="struct_color4.html" title="RGBA barva.">Color4</a> &amp; c, <span class="keyword">const</span> TYPE_REAL <a class="code" href="struct_color4.html#a2b49e738f00f809e03443d67a234bb97">a</a> ); 
+<a name="l00055"></a>00055         <span class="keyword">friend</span> <a class="code" href="struct_color4.html" title="RGBA barva.">Color4</a> operator*( <span class="keyword">const</span> TYPE_REAL <a class="code" href="struct_color4.html#a2b49e738f00f809e03443d67a234bb97">a</a>, <span class="keyword">const</span> <a class="code" href="struct_color4.html" title="RGBA barva.">Color4</a> &amp; c );
+<a name="l00056"></a>00056         <span class="keyword">friend</span> <a class="code" href="struct_color4.html" title="RGBA barva.">Color4</a> operator*( <span class="keyword">const</span> <a class="code" href="struct_vector3.html" title="Trojrozměrný (3D) vektor.">Vector3</a> &amp; v, <span class="keyword">const</span> <a class="code" href="struct_color4.html" title="RGBA barva.">Color4</a> &amp; c );
+<a name="l00057"></a>00057         
+<a name="l00058"></a>00058         <span class="keyword">friend</span> <span class="keywordtype">void</span> operator+=( <a class="code" href="struct_color4.html" title="RGBA barva.">Color4</a> &amp; c1, <span class="keyword">const</span> <a class="code" href="struct_color4.html" title="RGBA barva.">Color4</a> &amp; c2 );       
+<a name="l00059"></a>00059         <span class="keyword">friend</span> <span class="keywordtype">void</span> operator/=( <a class="code" href="struct_color4.html" title="RGBA barva.">Color4</a> &amp; c, <span class="keyword">const</span> TYPE_REAL <a class="code" href="struct_color4.html#a2b49e738f00f809e03443d67a234bb97">a</a> );
+<a name="l00060"></a>00060 };
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 <span class="preprocessor">#endif</span>
+</pre></div></div><!-- contents -->
+
+
+<hr class="footer"/><address class="footer"><small>
+Generováno st 26. zář 2012 13.20:41 pro projekt PG1 programem &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.0
+</small></address>
+
+</body>
+</html>
