@@ -1,7 +1,5 @@
 #pragma once
-
-#include "Ray.h"
-#include "Vector3.h"
+#include "stdafx.h"
 
 class Camera
 {
@@ -10,7 +8,7 @@ public:
 	Camera(int width, int height, float fov_y, Vector3 eye, Vector3 up, Vector3 x, Vector3 y, Vector3 z);
 	~Camera(void);
 
-	Ray GenerateRay(float x, float y);
+	//Ray GenerateRay(float x, float y);
 
 private:
 	Vector3 eye_; //[WS]

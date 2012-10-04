@@ -1,5 +1,4 @@
-#include "StdAfx.h"
-#include "Ray.h"
+#include "stdafx.h"
 
 
 Ray::Ray(void)

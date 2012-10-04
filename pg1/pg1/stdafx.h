@@ -72,3 +72,6 @@
 #include "surface.h"
 
 #include "objloader.h"
+
+#include "Camera.h"
+#include "Ray.h"
