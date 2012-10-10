@@ -8,9 +8,9 @@ public:
 	Camera(int width, int height, float fov_y, Vector3 eye, Vector3 up, Vector3 x, Vector3 y, Vector3 z);
 	~Camera(void);
 
-	//Ray GenerateRay(float x, float y);
+	Ray GenerateRay(float x, float y);
 
-private:
+//private:
 	Vector3 eye_; //[WS]
 	int width_;
 	int height_;
@@ -19,7 +19,11 @@ private:
 	Vector3 up_; // ukazuje, kde je nahoru
 	Vector3 axis_y_; // axis_z_ X x    znormlaizovat
 	Vector3 axis_x_; // axis_y_ X axis_z_     znormalizovat
+	float s;
 
 	float fov_y_; // [rad] sirka zaberu kamery
+
+	float ar;
+	
 };
 

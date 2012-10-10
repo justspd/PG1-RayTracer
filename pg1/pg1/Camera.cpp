@@ -12,13 +12,21 @@ Camera::Camera(int width, int height, float fov_y, Vector3 eye, Vector3 up, Vect
 	fov_y_ = fov_y;
 	eye_ = eye;
 	up_ = up;
-	
-	axis_x_ = x;
 
-	axis_y_ = y;
-	axis_z_ = z;
+	ar = width/height;
+
+	s = ar / (2*tanf(fov_y));
+
+	axis_x_ = x;
+	axis_y_ = up.CrossProduct(axis_x_);
+	axis_z_ = axis_x_.CrossProduct(axis_y_);
 }
 
 Camera::~Camera(void)
 {
+}
+
+Ray Camera::GenerateRay(float x, float y) {
+	Vector3 dir;
+	dir.x = axis_x_.x;
 }
