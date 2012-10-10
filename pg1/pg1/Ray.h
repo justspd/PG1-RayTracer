@@ -8,10 +8,12 @@ public:
 	Ray(Vector3 origin, Vector3 direction);
 	~Ray(void);
 
-private:
-	Vector3 origin_;
-	Vector3 direction_;
+	bool intersect_triangle(Triangle t);
 
-	float t; // REAL_MAX nastavit
+private:
+	Vector3 _origin;
+	Vector3 _direction;
+
+	float _t; // REAL_MAX nastavit
 };
 
