@@ -75,3 +75,5 @@
 
 #include "Camera.h"
 #include "Ray.h"
+#include "AABB.h"
+#include "BVH.h"
