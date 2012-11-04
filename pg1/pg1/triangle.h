@@ -1,5 +1,8 @@
 #ifndef TRIANGLE_H_
 #define TRIANGLE_H_
+#include "stdafx.h"
+#include "Ray.h"
+#include "Primitive.h"
 
 class Surface; // dopøedné deklarace tøídy
 
@@ -10,7 +13,7 @@ class Surface; // dopøedné deklarace tøídy
 \version 0.9
 \date 2012
 */
-class Triangle
+class Triangle : public Primitive
 {
 public:	
 	//! Vıchozí konstruktor.
@@ -68,6 +71,8 @@ public:
 	\return Ukazatel na sí.
 	*/
 	Surface * surface();
+
+	int Intersect(Ray* ray, float* t);
 
 protected:
 

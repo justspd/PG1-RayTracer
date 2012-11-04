@@ -8,7 +8,9 @@ public:
 	Ray(Vector3 origin, Vector3 direction);
 	~Ray(void);
 
-	bool intersect_triangle(Triangle t);
+	Vector3 GetOrigin();
+	Vector3 GetDirection();
+	float GetT();
 
 private:
 	Vector3 _origin;

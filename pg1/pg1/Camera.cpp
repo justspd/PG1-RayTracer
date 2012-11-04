@@ -5,27 +5,23 @@ Camera::Camera(void)
 
 }
 
-Camera::Camera(int width, int height, float fov_y, Vector3 eye, Vector3 up, Vector3 z)
+Camera::Camera(Vector3 origin, Vector3 direction, Vector3 up, float fov, float aspect_ratio)
 {
+	_origin = origin;
+	_direction = direction;
+	_direction.Normalize();
 
-	_width = width;
-	_height = height;
-	_fov_y = fov_y;
-	_eye = eye;
 	_up = up;
-
-	_eye.Normalize();
 	_up.Normalize();
+	_fov = fov;
+	_aspectratio = aspect_ratio;
 
-	_ar = (float)width / (float) height;
-	_s = _ar / (2*tanf(_fov_y));
-	
-	_axis_z = z;
-	_axis_z.Normalize();
-	_axis_x = up.CrossProduct(z);
-	_axis_x.Normalize();
-	_axis_y = z.CrossProduct(_axis_y);
-	_axis_y.Normalize();
+	this->_w = direction;
+	this->_u = up.CrossProduct(_w);
+	this->_u.Normalize();
+	this->_v = _w.CrossProduct(_u);
+	this->_v.Normalize();
+	this->_s = aspect_ratio / (2*tan(fov));
 
 }
 
@@ -34,10 +30,11 @@ Camera::~Camera(void)
 }
 
 Ray* Camera::GenerateRay(float x, float y) {
-	
-	Vector3 dir;
-	dir.x = ((2.0f * (float)x) - (float)_width) / (float)_width * tanf(_fov_y);
-	dir.y = ((2.0f * (float)y) - (float)_height) / (float)_height * tanf(_fov_y);
-	dir.z = -1;
-	return NULL;
+	Vector3 direction; 
+	direction.x = this->_u.x*(x*0.5*this->_aspectratio) + this->_v.x*(y*0.5) + this->_w.x*-this->_s; 
+	direction.y = this->_u.y*(x*0.5*this->_aspectratio) + this->_v.y*(y*0.5) + this->_w.y*-this->_s; 
+	direction.z = this->_u.z*(x*0.5*this->_aspectratio) + this->_v.z*(y*0.5) + this->_w.z*-this->_s; 
+	direction.Normalize();
+	Ray* result = new Ray(this->_origin, direction);
+	return result;
 }

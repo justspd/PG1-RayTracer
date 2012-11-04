@@ -66,3 +66,38 @@ Surface * Triangle::surface()
 {	
 	return *reinterpret_cast<Surface **>( vertices_[0].pad ); // FIX: chybí verze pro 64bit
 }
+
+int Triangle::Intersect(Ray* ray, float* t) {
+	Vector3 edge1, edge2, tvec, pvec, qvec;
+
+	Vector3 orig = ray->GetOrigin();
+	Vector3 dir = ray->GetDirection();
+	Vector3 vert0 = vertex(0).position;
+	Vector3 vert1 = vertex(1).position;
+	Vector3 vert2 = vertex(2).position;
+	double det, inv_det;
+	double const epsion = 0.000001;
+
+	edge1 = vert1 - vert0;
+	edge2 = vert2 - vert0;
+
+	pvec = dir.CrossProduct(edge2);
+	det = edge1.DotProduct(pvec);
+
+	if (det > -epsion && det < epsion) return MISS;
+
+	inv_det = 1.0/ det;
+
+	tvec = orig - vert0;
+
+	double u = tvec.DotProduct(pvec) * inv_det;
+	if (u < 0.0 || u > 1.0) return MISS;
+
+	qvec = tvec.CrossProduct(edge1);
+	double v = dir.DotProduct(qvec) * inv_det;
+	if (v < 0.0 || u+v > 1.0) return MISS;
+
+	*t = edge2.DotProduct(qvec) * inv_det;
+
+	return HIT;
+}

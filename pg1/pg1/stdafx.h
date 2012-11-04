@@ -56,6 +56,13 @@
 	} \
 }
 
+// INTERSECTION
+#define HIT		 1		
+#define MISS	 0		
+
+#define IMG_SIZE 640
+
+
 #include "utils.h"
 
 #include "vector2.h"
@@ -73,7 +80,11 @@
 
 #include "objloader.h"
 
+#include "RayTracer.h"
+#include "Cam.h"
 #include "Camera.h"
+#include "Primitive.h"
 #include "Ray.h"
 #include "AABB.h"
 #include "BVH.h"
+#include "Sphere.h"
