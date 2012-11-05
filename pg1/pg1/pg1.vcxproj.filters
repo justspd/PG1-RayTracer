@@ -96,6 +96,9 @@
     <ClCompile Include="Primitive.cpp">
       <Filter>Source Files\geom</Filter>
     </ClCompile>
+    <ClCompile Include="LightSource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -166,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="Primitive.h">
       <Filter>Header Files\geom</Filter>
+    </ClInclude>
+    <ClInclude Include="LightSource.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

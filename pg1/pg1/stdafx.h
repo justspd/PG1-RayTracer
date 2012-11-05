@@ -60,7 +60,7 @@
 #define HIT		 1		
 #define MISS	 0		
 
-#define IMG_SIZE 200
+#define IMG_SIZE 100
 
 
 #include "utils.h"
@@ -80,6 +80,7 @@
 
 #include "objloader.h"
 
+#include "LightSource.h"
 #include "RayTracer.h"
 #include "Cam.h"
 #include "Camera.h"
