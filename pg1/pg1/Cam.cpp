@@ -25,6 +25,10 @@ Ray* Cam::GenerateRay(float x, float y) {
 	return new Ray(this->_position, dir);
 }
 
+Vector3 Cam::GetPosition() {
+	return this->_position;
+}
+
 
 Cam::~Cam(void)
 {

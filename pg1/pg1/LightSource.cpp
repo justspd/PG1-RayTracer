@@ -2,19 +2,18 @@
 #include "LightSource.h"
 
 
-LightSource::LightSource(Vector3 origin)
+LightSource::LightSource(Vector3 origin, float intensity)
 {
 	this->_origin = origin;
-	_material.ambient = Vector3(100,100,100);
-	_material.diffuse = Vector3(100,100,100);
-	_material.reflectivity = 100;
-	_material.ior = 100;
-	_material.specular = Vector3(100,100,100);
-	_material.shininess = 100;
+	this->_intensity = intensity;
 }
 
 Vector3 LightSource::GetOrigin() {
 	return this->_origin;
+}
+
+Vector3 LightSource::GetIntensity() {
+	return Vector3(_intensity, _intensity, _intensity);
 }
 
 

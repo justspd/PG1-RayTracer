@@ -3,13 +3,15 @@
 class LightSource
 {
 public:
-	LightSource(Vector3 origin);
+	LightSource(Vector3 origin, float intensity);
 	~LightSource(void);
 
 	Vector3 GetOrigin();
+	Vector3 GetIntensity();
 
 private:
 	Vector3 _origin;
-	Material _material;
+	float _intensity;
+	
 };
 

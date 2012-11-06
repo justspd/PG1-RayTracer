@@ -39,23 +39,13 @@ Vector3 RayTracer::RayTrace(Ray * ray, int nest) {
 
 		Vector3 Il = ComputeLightSource(ray, t, intersectPrimitive);
 
-		float kr = 1.0f/(nest+1);
-		float kt = 1.0f/(nest+1);
+		float kr = 1.0f;
+		float kt = 1.0f;
 
 		Triangle* triangle = (Triangle*) intersectPrimitive;
-		Material* m = triangle->surface()->get_material();
-		Vector3 ambient = m->ambient;
-		Vector3 specular = m->specular;
-		Vector3 diffuse = m->diffuse;
-
-		/*int size = _lights.size();
-		for (int i = 0; i < i < size; i++) {
-			LightSource* actual = _lights.at(i);
-			
-		}*/
 
 
-		return (Il*ambient + Ir* specular /*+ kt*It*/)* (1.0f/nest+1);
+		return Il + kr*Ir;
 	}
 
 }
@@ -97,6 +87,7 @@ Ray* RayTracer::ComputeReflectedRayOut(Ray* r, float t, Primitive* p) {
 	float c1 = -normal.DotProduct(r->GetDirection());
 	
 	Vector3 dir = r->GetDirection() + (2 * normal * c1);
+	dir.Normalize();
 	
 	Ray* result = new Ray(pointOfIntersection, dir);
 	return result;
@@ -108,13 +99,34 @@ Ray* RayTracer::ComputeReflectedRayIn(Ray* r, float t, Primitive* p) {
 
 Vector3 RayTracer::ComputeLightSource(Ray* r, float t, Primitive* p) {
 	Triangle* tr = (Triangle*) p;
+	Material* m = tr->surface()->get_material();
+	Vector3 pointOfIntersection = r->GetOrigin() + t*r->GetDirection();
+	Vector3 normal = tr->normal(pointOfIntersection);
 
-	/*int size = _lights.size();
-	for (int i = 0; i < i < size; i++) {
+	int size = _lights.size();
+	Vector3 sum = Vector3(0,0,0);
+	for (int i = 0; i < size; i++) {
 		LightSource* actual = _lights.at(i);
-	}*/
-	float val = (1.0f/ 5.0f) * t;
-	return Vector3(val, val, val);
+		float Fatti = 1.0f;
+		int n = 30;
+		int Si = 1;
+
+		Vector3 L = actual->GetOrigin();
+		L.Normalize();
+		float cos_fi = L.DotProduct(normal);
+
+		Vector3 S = normal * cos_fi - L;
+		S.Normalize();
+		Vector3 R = 2*normal*(normal.DotProduct(L)) - L;
+		Vector3 V = _camera->GetPosition();
+		V.Normalize();
+		float cos_alpha = V.DotProduct(R); 
+
+		sum += Si*Fatti * actual->GetIntensity() * (m->diffuse * cos_fi + m->specular * pow(cos_alpha, n));
+	}
+	sum += m->diffuse * 0.001f;
+
+	return sum;
 }
 
 RayTracer::~RayTracer(void)

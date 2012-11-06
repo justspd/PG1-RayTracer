@@ -8,6 +8,7 @@ public:
 	Cam(Vector3 position, Vector3 lookAt, Vector3 up, float fov);
 
 	Ray* GenerateRay(float x, float y);
+	Vector3 GetPosition();
 	~Cam(void);
 
 private:
