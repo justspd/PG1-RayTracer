@@ -10,45 +10,51 @@ RayTracer::RayTracer(Cam* camera, std::vector<LightSource *> lights, std::vector
 Color4 RayTracer::GetResultColor(float x, float y) {
 	Ray* rayFromCamera = _camera->GenerateRay(x,y);
 
-	Vector3 result = this->RayTrace(rayFromCamera, 0);
+	Vector3 result = this->RayTrace(rayFromCamera, 0, Vector3(1,1,1), 0);
 
 	return Color4(result.x, result.y, result.z,1);
 }
 
-Vector3 RayTracer::RayTrace(Ray * ray, int nest) {
+Vector3 RayTracer::RayTrace(Ray * ray, int nest, Vector3 lightFrom, Surface* s) {
 	/*if (nest == 1) {
 		printf("nest1");
 	}
 	if (nest == 2) {
 		printf("nest2");
+	}
+	if (nest == 3) {
+		printf("nest3");
 	}*/
 	if (nest > MAX_NEST) return Vector3(0,0,0);
+	if (lightFrom.x <=0 && lightFrom.y <= 0 && lightFrom.z <= 0) return Vector3(0,0,0);
 	Surface* intersectSurface = 0;
 	Primitive* intersectPrimitive = 0;
 	float t = 0;
 
-	if (!GetNearestIntersection(ray, intersectSurface, intersectPrimitive, &t)) {
+	if (!GetNearestIntersection(ray, intersectSurface, intersectPrimitive, &t, s)) {
 		return Vector3(0,0,0);
 	}
 	 else {
+		 if (intersectSurface == s) return Vector3(0,0,0);
+		Vector3 Il = ComputeLightSource(ray, t, intersectPrimitive, intersectSurface);
+
 		Ray* reflectedOut = ComputeReflectedRayOut(ray, t, intersectPrimitive, intersectSurface);
-		Vector3 Ir = RayTrace(reflectedOut, ++nest);
+		Vector3 Ir = RayTrace(reflectedOut, ++nest, Il, intersectSurface);
 
 		/*Ray* reflectedIn = ComputeReflectedRayIn(ray, t, intersectPrimitive);
 		Color4 It = RayTrace(reflectedIn, ++nest);*/
 
-		Vector3 Il = ComputeLightSource(ray, t, intersectPrimitive, intersectSurface);
 
 		float kr = 1.0f;
 		float kt = 1.0f;
 
 
-		return Il + kr*Ir;
+		return (Il+ kr*Ir) * (1.0- 1.0/nest+1);
 	}
 
 }
 
-bool RayTracer::GetNearestIntersection(Ray* ray, Surface*& outSurface, Primitive*& outPrimitive, float* t_) {
+bool RayTracer::GetNearestIntersection(Ray* ray, Surface*& outSurface, Primitive*& outPrimitive, float* t_, Surface* from) {
 	int size = _surfaces.size();
 	Surface* s_nearest = 0;
 	Primitive* p_nearest = 0;
@@ -61,7 +67,7 @@ bool RayTracer::GetNearestIntersection(Ray* ray, Surface*& outSurface, Primitive
 		for (int j = 0; j < triangles_size; j++) {
 			float t = 0;
 			if (actual->get_primitives()[j]->Intersect(ray, &t) == HIT) {
-				if (t < t_nearest) {
+				if (t < t_nearest && actual != from) {
 					t_nearest = t;
 					s_nearest = actual;
 					p_nearest = actual->get_primitives()[j];
@@ -94,6 +100,26 @@ Ray* RayTracer::ComputeReflectedRayIn(Ray* r, float t, Primitive* p, Surface* su
 	return r;
 }
 
+int RayTracer:: isLightSourceVisible(Vector3 o, LightSource* ls, Surface* from) {
+	int size = _surfaces.size();
+
+	Vector3 dir = ls->GetOrigin() - o;
+	dir.Normalize();
+	Ray* ray = new Ray(o, dir);
+
+	for (int i = 0; i < size; i++) {
+		Surface* actual = _surfaces.at(i);
+		int triangles_size = actual->no_primitives();
+		for (int j = 0; j < triangles_size; j++) {
+			float t = 0;
+			if (actual->get_primitives()[j]->Intersect(ray, &t) == HIT && actual != from) {
+				return 0;
+			}
+		}
+	}
+	return 1;
+}
+
 Vector3 RayTracer::ComputeLightSource(Ray* r, float t, Primitive* p, Surface* surf) {
 	Material* m = surf->get_material();
 	Vector3 pointOfIntersection = r->GetOrigin() + t*r->GetDirection();
@@ -103,9 +129,14 @@ Vector3 RayTracer::ComputeLightSource(Ray* r, float t, Primitive* p, Surface* su
 	Vector3 sum = Vector3(0,0,0);
 	for (int i = 0; i < size; i++) {
 		LightSource* actual = _lights.at(i);
-		float Fatti = 1.0f;
+
+		float c0 = 0;
+		float c1 = 0.2f;
+		float c2 = 0;
+		float d = sqrt(pow(actual->GetOrigin().x - pointOfIntersection.x, 2) + pow(actual->GetOrigin().y - pointOfIntersection.y, 2) + pow(actual->GetOrigin().z - pointOfIntersection.z, 2));
+		float Fatti = MIN((float) 1/(c0 + c1*d + c2*d*d), 1);
 		int n = 30;
-		int Si = 1;
+		int Si = isLightSourceVisible(pointOfIntersection, actual, surf);
 
 		Vector3 L = actual->GetOrigin();
 		L.Normalize();
@@ -118,10 +149,10 @@ Vector3 RayTracer::ComputeLightSource(Ray* r, float t, Primitive* p, Surface* su
 		V.Normalize();
 		float cos_alpha = V.DotProduct(R); 
 
-		sum += Si*Fatti * actual->GetIntensity() * (m->diffuse * cos_fi + m->specular * pow(cos_alpha, n));
+		sum += Si*Fatti * actual->GetIntensity() * (m->diffuse * cos_fi +  m->specular * pow(cos_alpha, n));
 	}
 
-	sum += m->diffuse * 0.001f;
+	sum += m->diffuse * 0.2f;
 
 	return sum;
 }
