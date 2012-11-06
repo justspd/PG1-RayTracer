@@ -31,18 +31,16 @@ Vector3 RayTracer::RayTrace(Ray * ray, int nest) {
 		return Vector3(0,0,0);
 	}
 	 else {
-		Ray* reflectedOut = ComputeReflectedRayOut(ray, t, intersectPrimitive);
+		Ray* reflectedOut = ComputeReflectedRayOut(ray, t, intersectPrimitive, intersectSurface);
 		Vector3 Ir = RayTrace(reflectedOut, ++nest);
 
 		/*Ray* reflectedIn = ComputeReflectedRayIn(ray, t, intersectPrimitive);
 		Color4 It = RayTrace(reflectedIn, ++nest);*/
 
-		Vector3 Il = ComputeLightSource(ray, t, intersectPrimitive);
+		Vector3 Il = ComputeLightSource(ray, t, intersectPrimitive, intersectSurface);
 
 		float kr = 1.0f;
 		float kt = 1.0f;
-
-		Triangle* triangle = (Triangle*) intersectPrimitive;
 
 
 		return Il + kr*Ir;
@@ -59,14 +57,14 @@ bool RayTracer::GetNearestIntersection(Ray* ray, Surface*& outSurface, Primitive
 	for (int i = 0; i < size; i++) {
 		Surface* actual = _surfaces.at(i);
 		
-		int triangles_size = actual->no_triangles();
+		int triangles_size = actual->no_primitives();
 		for (int j = 0; j < triangles_size; j++) {
 			float t = 0;
-			if (actual->get_triangles()[j].Intersect(ray, &t) == HIT) {
+			if (actual->get_primitives()[j]->Intersect(ray, &t) == HIT) {
 				if (t < t_nearest) {
 					t_nearest = t;
 					s_nearest = actual;
-					p_nearest = &actual->get_triangles()[j];
+					p_nearest = actual->get_primitives()[j];
 				}
 			}
 		}
@@ -80,10 +78,9 @@ bool RayTracer::GetNearestIntersection(Ray* ray, Surface*& outSurface, Primitive
 	
 	return true;
 }
-Ray* RayTracer::ComputeReflectedRayOut(Ray* r, float t, Primitive* p) {
-	Triangle* tr = (Triangle*) p;
+Ray* RayTracer::ComputeReflectedRayOut(Ray* r, float t, Primitive* p, Surface* surf) {
 	Vector3 pointOfIntersection = r->GetOrigin() + t*r->GetDirection();
-	Vector3 normal = tr->normal(pointOfIntersection);
+	Vector3 normal = p->normal(pointOfIntersection);
 	float c1 = -normal.DotProduct(r->GetDirection());
 	
 	Vector3 dir = r->GetDirection() + (2 * normal * c1);
@@ -93,15 +90,14 @@ Ray* RayTracer::ComputeReflectedRayOut(Ray* r, float t, Primitive* p) {
 	return result;
 }
 
-Ray* RayTracer::ComputeReflectedRayIn(Ray* r, float t, Primitive* p) {
+Ray* RayTracer::ComputeReflectedRayIn(Ray* r, float t, Primitive* p, Surface* surf) {
 	return r;
 }
 
-Vector3 RayTracer::ComputeLightSource(Ray* r, float t, Primitive* p) {
-	Triangle* tr = (Triangle*) p;
-	Material* m = tr->surface()->get_material();
+Vector3 RayTracer::ComputeLightSource(Ray* r, float t, Primitive* p, Surface* surf) {
+	Material* m = surf->get_material();
 	Vector3 pointOfIntersection = r->GetOrigin() + t*r->GetDirection();
-	Vector3 normal = tr->normal(pointOfIntersection);
+	Vector3 normal = p->normal(pointOfIntersection);
 
 	int size = _lights.size();
 	Vector3 sum = Vector3(0,0,0);
@@ -124,6 +120,7 @@ Vector3 RayTracer::ComputeLightSource(Ray* r, float t, Primitive* p) {
 
 		sum += Si*Fatti * actual->GetIntensity() * (m->diffuse * cos_fi + m->specular * pow(cos_alpha, n));
 	}
+
 	sum += m->diffuse * 0.001f;
 
 	return sum;

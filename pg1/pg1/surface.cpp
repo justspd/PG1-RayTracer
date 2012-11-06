@@ -13,9 +13,18 @@ Surface * BuildSurface( const std::string & name, std::vector<Vertex> & face_ver
 	// kopírování dat
 	for ( int i = 0; i < no_triangles; ++i )
 	{		
-		surface->get_triangles()[i] = Triangle( face_vertices[i * 3],
+		surface->get_primitives()[i] = new Triangle( face_vertices[i * 3],
 			face_vertices[i * 3 + 1], face_vertices[i * 3 + 2], surface );
 	}
+
+	return surface;
+}
+
+Surface * BuildSurfaceFromPrimitive( const std::string & name, Primitive* prim )
+{
+
+	Surface * surface = new Surface( name, 1 );
+	surface->get_primitives()[0] = prim;
 
 	return surface;
 }
@@ -23,7 +32,7 @@ Surface * BuildSurface( const std::string & name, std::vector<Vertex> & face_ver
 Surface::Surface()
 {
 	n_ = 0;
-	triangles_ = NULL;
+	primitives_ = NULL;
 }
 
 Surface::Surface( const std::string & name, const int n )
@@ -33,18 +42,19 @@ Surface::Surface( const std::string & name, const int n )
 	name_ = name;
 
 	n_ = n;
-	triangles_ = new Triangle[n_];
+	primitives_ = new Primitive*[n_];
 }
 
 Surface::~Surface()
 {
-	SAFE_DELETE_ARRAY( triangles_ );
+	//SAFE_DELETE_ARRAY( triangles_ );
+	for (int i = 0; i < n_; i++) delete primitives_[i];
 	n_ = 0;
 }
 
-Triangle * Surface::get_triangles()
+Primitive ** Surface::get_primitives()
 {
-	return triangles_;
+	return primitives_;
 }
 
 std::string Surface::get_name()
@@ -52,7 +62,7 @@ std::string Surface::get_name()
 	return name_;
 }
 
-int Surface::no_triangles()
+int Surface::no_primitives()
 {
 	return n_;
 }

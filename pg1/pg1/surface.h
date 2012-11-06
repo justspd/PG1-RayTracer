@@ -36,7 +36,7 @@ public:
 	/*!	
 	\return Pole všech trojúhelníkù.
 	*/
-	Triangle * get_triangles();
+	Primitive ** get_primitives();
 
 	//! Vrátí název plochy.
 	/*!	
@@ -48,7 +48,7 @@ public:
 	/*!	
 	\return Poèet všech trojúhelníkù v síti.
 	*/
-	int no_triangles();
+	int no_primitives();
 
 	//! Vrátí poèet všech vrcholù v síti.
 	/*!	
@@ -78,7 +78,7 @@ protected:
 
 private:
 	int n_; /*!< Poèet trojúhelníkù v síti. */	
-	Triangle * triangles_; /*!< Trojúhelníková sí. */
+	Primitive ** primitives_; /*!< Trojúhelníková sí. */
 	
 	std::string name_; /*!< Název plochy. */
 
@@ -92,5 +92,6 @@ private:
 \param face_vertices pole trojic vrcholù.
 */
 Surface * BuildSurface( const std::string & name, std::vector<Vertex> & face_vertices );
+Surface * BuildSurfaceFromPrimitive( const std::string & name, Primitive* prim );
 
 #endif

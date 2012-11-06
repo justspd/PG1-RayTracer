@@ -7,16 +7,15 @@ public:
 
 	Vector3 GetCenter();
 	float GetSqRadius();
-	Material * GetMaterial();
 
 	int Intersect(Ray* ray, float* t);
-	Vector3 GetNormal(Vector3 pos);
 	Color4 GetColor();
+
+	Vector3 normal( Vector3 & p, Vector2 * texture_coord = NULL );
 
 private:
 	Vector3 _center;
 	float _radius, _sqradius, _rradius;
-	Material* _material;
 
 	Color4 _color;
 };

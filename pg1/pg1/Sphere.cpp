@@ -7,7 +7,6 @@ Sphere::Sphere(Vector3 center, float radius, Color4 color) {
 	this->_radius = radius;
 	this->_sqradius = radius * radius;
 	this->_rradius = 1.0f / radius;
-	this->_material = new Material();
 	this->_color = color;
 }
 
@@ -60,12 +59,11 @@ int Sphere::Intersect(Ray* ray, float*  t) {
 
 }
 
-Vector3 Sphere::GetNormal(Vector3 pos) {
-	return (pos - this->GetCenter()) * this->_rradius;
-}
+Vector3 Sphere::normal( Vector3 & p, Vector2 * texture_coord){
+	Vector3 norm = (p - this->GetCenter()) * this->_rradius;
+	norm.Normalize();
+	return norm;
 
-Material* Sphere::GetMaterial() {
-	return this->_material;
 }
 
 Sphere::~Sphere(void)

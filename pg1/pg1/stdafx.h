@@ -60,7 +60,7 @@
 #define HIT		 1		
 #define MISS	 0		
 
-#define IMG_SIZE 200
+#define IMG_SIZE 400
 
 
 #include "utils.h"
