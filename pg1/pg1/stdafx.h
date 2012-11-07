@@ -60,7 +60,10 @@
 #define HIT		 1		
 #define MISS	 0		
 
-#define IMG_SIZE 200
+#define IMG_SIZE 640
+
+#define ANTIALIASING 0
+#define MAX_NEST 3
 
 
 #include "utils.h"

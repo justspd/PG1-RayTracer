@@ -20,7 +20,7 @@ Cam::Cam(Vector3 position, Vector3 lookAt, Vector3 up, float fov) {
 
 
 Ray* Cam::GenerateRay(float x, float y) {
-	Vector3 dir = this->_dist * this->_direction + (0.5 - (float) y / (float) (IMG_SIZE - 1)) * this->_cameraUp +
+	Vector3 dir = this->_dist * this->_direction + (0.5 - (float) y / (float) (IMG_SIZE - 1)) * (this->_cameraUp) +
                       ((float) x / (float) (IMG_SIZE - 1) - 0.5) * this->_cameraRight;
 	return new Ray(this->_position, dir);
 }
