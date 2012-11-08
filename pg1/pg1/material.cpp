@@ -28,6 +28,24 @@ Material::Material( std::string & name, const Vector3 & ambient, const Vector3 &
 	this->diffuse = diffuse;
 	this->specular = specular;
 	this->shininess = shininess;
+	this->ior = ior;
+	if ( textures != NULL )
+	{
+		memcpy( textures_, textures, sizeof( textures ) * no_textures );
+	}
+}
+
+Material::Material( std::string & name, const Vector3 & ambient, const Vector3 & diffuse,
+		const Vector3 & specular, const TYPE_REAL shininess, const TYPE_REAL ior, const TYPE_REAL reflectivity,
+		Texture ** textures, const int no_textures ) {
+	name_ = name;
+
+	this->ambient = ambient;
+	this->diffuse = diffuse;
+	this->specular = specular;
+	this->shininess = shininess;
+	this->reflectivity = reflectivity;
+	this->ior = ior;
 
 	if ( textures != NULL )
 	{

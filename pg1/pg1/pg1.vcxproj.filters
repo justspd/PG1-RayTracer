@@ -99,6 +99,9 @@
     <ClCompile Include="LightSource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EnvironmentSphere.cpp">
+      <Filter>Source Files\geom</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -172,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="LightSource.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EnvironmentSphere.h">
+      <Filter>Header Files\geom</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

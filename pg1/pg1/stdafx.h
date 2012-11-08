@@ -60,10 +60,12 @@
 #define HIT		 1		
 #define MISS	 0		
 
-#define IMG_SIZE 640
+#define IMG_SIZE 860
 
 #define ANTIALIASING 0
-#define MAX_NEST 3
+#define MAX_NEST 2
+
+#define ATMOSPHERE IOR_AIR
 
 
 #include "utils.h"
@@ -83,6 +85,7 @@
 
 #include "objloader.h"
 
+
 #include "LightSource.h"
 #include "RayTracer.h"
 #include "Cam.h"
@@ -92,3 +95,4 @@
 #include "AABB.h"
 #include "BVH.h"
 #include "Sphere.h"
+#include "EnvironmentSphere.h"

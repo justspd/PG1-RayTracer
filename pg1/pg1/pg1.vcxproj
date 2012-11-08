@@ -104,6 +104,7 @@
     <ClCompile Include="BVH.cpp" />
     <ClCompile Include="Cam.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="EnvironmentSphere.cpp" />
     <ClCompile Include="LightSource.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="objloader.cpp" />
@@ -133,6 +134,7 @@
     <ClInclude Include="BVH.h" />
     <ClInclude Include="Cam.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="EnvironmentSphere.h" />
     <ClInclude Include="LightSource.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="objloader.h" />

@@ -49,6 +49,10 @@ public:
 		const Vector3 & specular, const TYPE_REAL shininess, const TYPE_REAL ior,
 		Texture ** textures = NULL, const int no_textures = 0 );
 
+	Material( std::string & name, const Vector3 & ambient, const Vector3 & diffuse,
+		const Vector3 & specular, const TYPE_REAL shininess, const TYPE_REAL ior, const TYPE_REAL reflectivity,
+		Texture ** textures = NULL, const int no_textures = 0);
+
 	//void Print();
 
 	//! Nastaví název materiálu.

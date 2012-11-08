@@ -2,17 +2,27 @@
 #include "Sphere.h"
 
 
-Sphere::Sphere(Vector3 center, float radius, Color4 color) {
+Sphere::Sphere(Vector3 center, float radius, Vector3 up) {
 	this->_center = center;
 	this->_radius = radius;
 	this->_sqradius = radius * radius;
 	this->_rradius = 1.0f / radius;
-	this->_color = color;
+	this->_up = up;
 }
 
-Color4 Sphere::GetColor() {
-	return this->_color;
+Sphere::Sphere(Vector3 center, float radius, Vector3 up, Texture* texture){
+	this->_center = center;
+	this->_radius = radius;
+	this->_sqradius = radius * radius;
+	this->_rradius = 1.0f / radius;
+	this->_texture = texture;
+	this->_up = up;
 }
+
+Texture* Sphere::GetTexture() {
+	return this->_texture;
+}
+
 
 Vector3 Sphere::GetCenter() {
 	return this->_center;

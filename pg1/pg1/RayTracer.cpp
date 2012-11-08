@@ -1,21 +1,23 @@
 #include "StdAfx.h"
 
-RayTracer::RayTracer(Cam* camera, std::vector<LightSource *> lights, std::vector<Surface *> surf)
+RayTracer::RayTracer(Cam* camera, std::vector<LightSource *> lights, std::vector<Surface *> surf, EnvironmentSphere* env)
 {
 	this->_camera = camera;
 	this->_lights = lights;
 	this->_surfaces = surf;
+	this->_env = env;
+
 }
 
 Color4 RayTracer::GetResultColor(float x, float y) {
 	Ray* rayFromCamera = _camera->GenerateRay(x,y);
 
-	Vector3 result = this->RayTrace(rayFromCamera, 0, Vector3(1,1,1), 0, 0);
+	Vector3 result = this->RayTrace(rayFromCamera, 0, Vector3(1,1,1), 0, 0, false, ATMOSPHERE, ATMOSPHERE);
 
 	return Color4(result.x, result.y, result.z,1);
 }
 
-Vector3 RayTracer::RayTrace(Ray * ray, int nest, Vector3 lightFrom, Surface* s, Primitive* p) {
+Vector3 RayTracer::RayTrace(Ray * ray, int nest, Vector3 lightFrom, Surface* s, Primitive* p, bool isInside, float ior_from, float ior_to) {
 	/*if (nest == 1) {
 		printf("nest1");
 	}
@@ -31,26 +33,72 @@ Vector3 RayTracer::RayTrace(Ray * ray, int nest, Vector3 lightFrom, Surface* s, 
 	Primitive* intersectPrimitive = 0;
 	float t = 0;
 
-	if (!GetNearestIntersection(ray, intersectSurface, intersectPrimitive, &t, s, p)) {
-		return Vector3(0,0,0);
+	if (!isInside) {
+		if (!GetNearestIntersection(ray, intersectSurface, intersectPrimitive, &t, s, p)) {
+			if (_env != 0) {
+				return _env->GetColorAt(ray);
+			}
+
+			return Vector3(0,0,0);
+		}
+		else {
+			 if (intersectSurface == s) return Vector3(0,0,0);
+			Vector3 Il = ComputeLightSource(ray, t, intersectPrimitive, intersectSurface);
+
+			Ray* reflectedOut = ComputeReflectedRayOut(ray, t, intersectPrimitive, intersectSurface,ior_from, ior_from, false);
+			Vector3 Ir = RayTrace(reflectedOut, ++nest, Il, intersectSurface, intersectPrimitive, false, ior_from, ior_from);
+
+			Ray* reflectedIn = ComputeReflectedRayIn(ray, t, intersectPrimitive, intersectSurface, ior_from, intersectSurface->get_material()->ior, false);
+			Vector3 It =  RayTrace(reflectedIn, ++nest, Il, intersectSurface, intersectPrimitive, false, ior_from, intersectSurface->get_material()->ior);
+
+			float kr = intersectSurface->get_material()->shininess;
+			float kt = intersectSurface->get_material()->reflectivity;
+
+			Sphere* sphere = (Sphere*) intersectPrimitive;
+			
+
+			return (Il+ (kr*Ir) + (kt*It)) * (1.0- 1.0/nest+1);
 	}
-	 else {
-		 if (intersectSurface == s) return Vector3(0,0,0);
-		Vector3 Il = ComputeLightSource(ray, t, intersectPrimitive, intersectSurface);
+	} else {
 
-		Ray* reflectedOut = ComputeReflectedRayOut(ray, t, intersectPrimitive, intersectSurface);
-		Vector3 Ir = RayTrace(reflectedOut, ++nest, Il, intersectSurface, intersectPrimitive);
+		if (!GetNearestIntersectionInSurface(ray, s, &t, intersectPrimitive)) {
+			return Vector3(0,0,0);
+		} else {
 
-		/*Ray* reflectedIn = ComputeReflectedRayIn(ray, t, intersectPrimitive);
-		Color4 It = RayTrace(reflectedIn, ++nest);*/
+			Vector3 Il = ComputeLightSource(ray, t, intersectPrimitive, s);
+		
+			Ray* reflectedOut = ComputeReflectedRayOut(ray, t, intersectPrimitive, s,ior_to, ior_to, true);
+			Vector3 Ir = RayTrace(reflectedOut, ++nest, Il, s, intersectPrimitive, true, ior_to, ior_to);
 
-		float kr = 0.5f;
-		float kt = 1.0f;
+			Ray* reflectedIn = ComputeReflectedRayIn(ray, t, intersectPrimitive, s, ior_to, ATMOSPHERE, true);
+			Vector3 It =  RayTrace(reflectedIn, ++nest, Il, s, intersectPrimitive, false, ior_to, ATMOSPHERE);
 
-
-		return (Il+ (kr*Ir)) * (1.0- 1.0/nest+1);
+			float kr = s->get_material()->shininess;
+			float kt = s->get_material()->reflectivity;
+			return (Il+ (kr*Ir)+ (kt*It));
+		}
 	}
 
+}
+
+bool RayTracer::GetNearestIntersectionInSurface(Ray* ray, Surface* in, float* t, Primitive*& outPrimitive) {
+	Primitive* p_nearest = 0;
+	float t_nearest = 0;
+	int primitive_size = in->no_primitives();
+	for (int i = 0; i < primitive_size; i++) {
+		float _t = 0;
+		if (in->get_primitives()[i]->Intersect(ray, &_t) == HIT) {
+				if (_t > t_nearest) {
+					t_nearest = _t;
+					p_nearest = in->get_primitives()[i];
+				}
+			}
+	}
+	if (p_nearest == 0) return false;
+
+	*t = t_nearest;
+	outPrimitive = p_nearest;
+	return true;
 }
 
 bool RayTracer::GetNearestIntersection(Ray* ray, Surface*& outSurface, Primitive*& outPrimitive, float* t_, Surface* from, Primitive* pfrom) {
@@ -83,23 +131,42 @@ bool RayTracer::GetNearestIntersection(Ray* ray, Surface*& outSurface, Primitive
 	
 	return true;
 }
-Ray* RayTracer::ComputeReflectedRayOut(Ray* r, float t, Primitive* p, Surface* surf) {
+Ray* RayTracer::ComputeReflectedRayOut(Ray* r, float t, Primitive* p, Surface* surf,float N1, float N2, bool isInside) {
+		Vector3 pointOfIntersection = r->GetOrigin() + t*r->GetDirection();
+		Vector3 normal = p->normal(pointOfIntersection);
+		float c1 = -normal.DotProduct(r->GetDirection());
+	
+		Vector3 dir = r->GetDirection() + (2 * normal * c1);
+		dir.Normalize();
+	
+		Ray* result = new Ray(pointOfIntersection, dir);
+		return result;
+}
+
+Ray* RayTracer::ComputeReflectedRayIn(Ray* r, float t, Primitive* p, Surface* surf, float N1, float N2, bool isInside) {
 	Vector3 pointOfIntersection = r->GetOrigin() + t*r->GetDirection();
 	Vector3 normal = p->normal(pointOfIntersection);
 	float c1 = -normal.DotProduct(r->GetDirection());
 	
-	Vector3 dir = r->GetDirection() + (2 * normal * c1);
+	float s1 = sin(acos(c1));
+	float s2 = (s1*N1) / N2;
+	//float c2 = cos(asin(s2));
+	//float c2 = sqrt(1.0f - ((N2/N1) * (1.0f - pow(normal.DotProduct(r->GetDirection()),2))));
+	
+	float n = N1/N2;
+	float c2 = sqrt(1.0* pow(n,2) * (1.0 - pow(c1,2)));
+	
+	//Vector3 dir = (N1/N2)*(normal * c1 + r->GetDirection()) - (normal * c2);
+	//Vector3 dir = (N2/N1)* r->GetDirection() + (((N2/N1) * (normal.DotProduct(r->GetDirection()))) - c2) * normal;
+	Vector3 dir = (n * r->GetDirection()) + (n * c1 - c2) * normal;
+	
 	dir.Normalize();
 	
 	Ray* result = new Ray(pointOfIntersection, dir);
 	return result;
 }
 
-Ray* RayTracer::ComputeReflectedRayIn(Ray* r, float t, Primitive* p, Surface* surf) {
-	return r;
-}
-
-int RayTracer:: isLightSourceVisible(Vector3 o, LightSource* ls, Surface* from, Primitive * pfrom) {
+float RayTracer:: isLightSourceVisible(Vector3 o, LightSource* ls, Surface* from, Primitive * pfrom) {
 	int size = _surfaces.size();
 
 	Vector3 dir = ls->GetOrigin() - o;
@@ -108,10 +175,14 @@ int RayTracer:: isLightSourceVisible(Vector3 o, LightSource* ls, Surface* from, 
 
 	for (int i = 0; i < size; i++) {
 		Surface* actual = _surfaces.at(i);
+		if (actual->get_material()->reflectivity > 0) {
+			return 1;
+		}
 		int triangles_size = actual->no_primitives();
 		for (int j = 0; j < triangles_size; j++) {
 			float t = 0;
 			if (actual->get_primitives()[j]->Intersect(ray, &t) == HIT && actual->get_primitives()[j] != pfrom) {
+				
 				return 0;
 			}
 		}
