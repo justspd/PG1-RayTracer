@@ -60,7 +60,7 @@
 #define HIT		 1		
 #define MISS	 0		
 
-#define IMG_SIZE 860
+#define IMG_SIZE 640
 
 #define ANTIALIASING 0
 #define MAX_NEST 2
@@ -96,3 +96,4 @@
 #include "BVH.h"
 #include "Sphere.h"
 #include "EnvironmentSphere.h"
+#include "Block.h"

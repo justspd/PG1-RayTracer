@@ -27,6 +27,9 @@ Vector3 RayTracer::RayTrace(Ray * ray, int nest, Vector3 lightFrom, Surface* s, 
 	if (nest == 3) {
 		printf("nest3");
 	}*/
+	 if (isInside) {
+		float c= 0;
+	}
 	if (nest > MAX_NEST) return Vector3(0,0,0);
 	if (lightFrom.x <=0 && lightFrom.y <= 0 && lightFrom.z <= 0) return Vector3(0,0,0);
 	Surface* intersectSurface = 0;
@@ -43,13 +46,18 @@ Vector3 RayTracer::RayTrace(Ray * ray, int nest, Vector3 lightFrom, Surface* s, 
 		}
 		else {
 			 if (intersectSurface == s) return Vector3(0,0,0);
+
 			Vector3 Il = ComputeLightSource(ray, t, intersectPrimitive, intersectSurface);
 
 			Ray* reflectedOut = ComputeReflectedRayOut(ray, t, intersectPrimitive, intersectSurface,ior_from, ior_from, false);
 			Vector3 Ir = RayTrace(reflectedOut, ++nest, Il, intersectSurface, intersectPrimitive, false, ior_from, ior_from);
 
-			Ray* reflectedIn = ComputeReflectedRayIn(ray, t, intersectPrimitive, intersectSurface, ior_from, intersectSurface->get_material()->ior, false);
-			Vector3 It =  RayTrace(reflectedIn, ++nest, Il, intersectSurface, intersectPrimitive, false, ior_from, intersectSurface->get_material()->ior);
+			Ray* reflectedIn;
+			Vector3 It = Vector3(0,0,0);
+			if (intersectSurface->get_material()->reflectivity > 0) {
+				reflectedIn = ComputeReflectedRayIn(ray, t, intersectPrimitive, intersectSurface, ior_from, intersectSurface->get_material()->ior, false);
+				It =  RayTrace(reflectedIn, ++nest, Il, intersectSurface, intersectPrimitive, true, ior_from, intersectSurface->get_material()->ior);
+			}
 
 			float kr = intersectSurface->get_material()->shininess;
 			float kt = intersectSurface->get_material()->reflectivity;
@@ -75,7 +83,7 @@ Vector3 RayTracer::RayTrace(Ray * ray, int nest, Vector3 lightFrom, Surface* s, 
 
 			float kr = s->get_material()->shininess;
 			float kt = s->get_material()->reflectivity;
-			return (Il+ (kr*Ir)+ (kt*It));
+			return (Il+ (kt*It)) * (1.0- 1.0/nest+1);
 		}
 	}
 
@@ -219,7 +227,18 @@ Vector3 RayTracer::ComputeLightSource(Ray* r, float t, Primitive* p, Surface* su
 		V.Normalize();
 		float cos_alpha = MAX(V.DotProduct(R), 0.0);
 
-		sum += Si*Fatti * actual->GetIntensity() * (m->diffuse * cos_fi + m->specular * pow(cos_alpha, n));
+		if (dynamic_cast<Triangle *>(p)) {
+			Triangle* tr = (Triangle*) p;
+			Texture* tex = m->get_texture(0);
+			Color4 c = tex->get_texel(tr->vertex(0).texture_coords->x, tr->vertex(0).texture_coords->y);
+			sum += Si*Fatti * actual->GetIntensity() * (m->diffuse * cos_fi + m->specular * pow(cos_alpha, n));
+		} else if (dynamic_cast<Sphere *>(p)) {
+			sum += Si*Fatti * actual->GetIntensity() * (m->diffuse * cos_fi + m->specular * pow(cos_alpha, n));
+		} else if (dynamic_cast<Block*>(p)) {
+			sum += Si*Fatti * actual->GetIntensity() * (m->diffuse * cos_fi + m->specular * pow(cos_alpha, n));
+		}
+
+		
 	}
 
 	sum += m->diffuse * 0.2f; // ambient
