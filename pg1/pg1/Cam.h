@@ -9,6 +9,7 @@ public:
 
 	Ray* GenerateRay(float x, float y);
 	Vector3 GetPosition();
+	Matrix4x4* GetMatrix();
 	~Cam(void);
 
 private:
@@ -18,6 +19,8 @@ private:
 	Vector3 _direction;
 	Vector3 _cameraRight;
 	Vector3 _cameraUp;
+
+	Matrix4x4* _matToWS;
 	
 	float _fov;
 	float _dist;

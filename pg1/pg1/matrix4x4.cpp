@@ -99,6 +99,25 @@ TYPE_REAL * Matrix4x4::data()
 	return &data_[0];
 }
 
+Vector3 Matrix4x4::mult(Vector3 v) {
+	
+	float x,y,z,w;
+	
+	x = (v.x* m00_ + v.y * m10_ + v.z * m20_ + 1 * m30_);
+	y = (v.x* m01_ + v.y * m11_ + v.z * m21_ + 1 * m31_);
+	z = (v.x* m02_ + v.y * m12_ + v.z * m22_ + 1 * m32_);
+	w = (v.x* m03_ + v.y * m13_ + v.z * m23_ + 1 * m33_);
+
+	if (w != 0 && w != 1) {
+		x = x/w;
+		y = y/w;
+		z = z/w;
+	}
+
+	return Vector3(x, y, z);
+}
+
+
 Matrix4x4 operator*( const Matrix4x4 & a, const Matrix4x4 & b )
 {
 	return Matrix4x4( a.m00_ * b.m00_ + a.m01_ * b.m10_ + a.m02_ * b.m20_ + a.m03_ * b.m30_,

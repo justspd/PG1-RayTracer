@@ -7,26 +7,27 @@ RayTracer::RayTracer(Cam* camera, std::vector<LightSource *> lights, std::vector
 	this->_surfaces = surf;
 	this->_env = env;
 
+	int surfcount = surf.size();
+	for (int i = 0; i < surfcount; i++) {
+		Surface* actual = surf.at(i);
+		int num = actual->no_primitives();
+		for(int j= 0; j < num; j++) {
+			actual->get_primitives()[j]->applyMatrix(camera->GetMatrix());
+		}
+	}
+
 }
 
 Color4 RayTracer::GetResultColor(float x, float y) {
 	Ray* rayFromCamera = _camera->GenerateRay(x,y);
 
 	Vector3 result = this->RayTrace(rayFromCamera, 0, Vector3(1,1,1), 0, 0, false, ATMOSPHERE, ATMOSPHERE);
+	
 
 	return Color4(result.x, result.y, result.z,1);
 }
 
 Vector3 RayTracer::RayTrace(Ray * ray, int nest, Vector3 lightFrom, Surface* s, Primitive* p, bool isInside, float ior_from, float ior_to) {
-	/*if (nest == 1) {
-		printf("nest1");
-	}
-	if (nest == 2) {
-		printf("nest2");
-	}
-	if (nest == 3) {
-		printf("nest3");
-	}*/
 	 if (isInside) {
 		float c= 0;
 	}
@@ -39,7 +40,9 @@ Vector3 RayTracer::RayTrace(Ray * ray, int nest, Vector3 lightFrom, Surface* s, 
 	if (!isInside) {
 		if (!GetNearestIntersection(ray, intersectSurface, intersectPrimitive, &t, s, p)) {
 			if (_env != 0) {
+				if (nest == 0) {
 				return _env->GetColorAt(ray);
+				} else return _env->GetColorAt(ray) * (((float)MAX_NEST - (float)nest) / (float)MAX_NEST);
 			}
 
 			return Vector3(0,0,0);
@@ -65,7 +68,8 @@ Vector3 RayTracer::RayTrace(Ray * ray, int nest, Vector3 lightFrom, Surface* s, 
 			Sphere* sphere = (Sphere*) intersectPrimitive;
 			
 
-			return (Il+ (kr*Ir) + (kt*It)) * (1.0- 1.0/nest+1);
+			//return (Il+ (kr*Ir) + (kt*It)) * (((float)MAX_NEST - nest) / (float)MAX_NEST);
+			return (Il+ (kr*Ir) + (kt*It)) * (((float)MAX_NEST - nest) / (float)MAX_NEST+1);
 	}
 	} else {
 
@@ -83,7 +87,7 @@ Vector3 RayTracer::RayTrace(Ray * ray, int nest, Vector3 lightFrom, Surface* s, 
 
 			float kr = s->get_material()->shininess;
 			float kt = s->get_material()->reflectivity;
-			return (Il+ (kt*It)) * (1.0- 1.0/nest+1);
+			return (Il+ (kt*It)) * (((float)MAX_NEST - nest) / (float)MAX_NEST);
 		}
 	}
 

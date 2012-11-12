@@ -67,6 +67,16 @@
 
 #define ATMOSPHERE IOR_AIR
 
+enum Side {
+	SIDE_POSX = 0,
+	SIDE_NEGX = 1,
+	SIDE_POSY = 2,
+	SIDE_NEGY = 3,
+	SIDE_POSZ = 4,
+	SIDE_NEGZ = 5,
+	SIDE_COUNT = 6
+};
+
 
 #include "utils.h"
 

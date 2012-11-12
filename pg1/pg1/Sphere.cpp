@@ -23,6 +23,10 @@ Texture* Sphere::GetTexture() {
 	return this->_texture;
 }
 
+void Sphere::applyMatrix(Matrix4x4* m) {
+	this->_center = m->mult(_center);
+}
+
 
 Vector3 Sphere::GetCenter() {
 	return this->_center;

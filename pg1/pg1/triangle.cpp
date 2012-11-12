@@ -52,6 +52,12 @@ Vector3 Triangle::normal( Vector3 & p, Vector2 * texture_coord )
 	return normal;	
 }
 
+void Triangle::applyMatrix(Matrix4x4* m) {
+	vertices_[0].position = m->mult(vertices_[0].position);
+	vertices_[1].position = m->mult(vertices_[1].position);
+	vertices_[2].position = m->mult(vertices_[2].position);
+}
+
 Vector3 Triangle::baricenter()
 {
 	return ( vertices_[0].position + vertices_[1].position + vertices_[2].position ) / 3;

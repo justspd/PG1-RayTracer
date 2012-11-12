@@ -47,6 +47,7 @@ public:
 		\param column sloupec matice.
 		\param value nová hodnota prvku matice.
 	*/
+	Vector3 mult(Vector3 v);
 	void set( const int row, const int column, const TYPE_REAL value );
 
 	//! Ukazatel na prvky matice.

@@ -51,6 +51,7 @@ public:
 	\return Normála trojúhelníka v zadaném bodì.
 	*/
 	Vector3 normal( Vector3 & p, Vector2 * texture_coord = NULL );
+	void applyMatrix(Matrix4x4* m);
 
 	//! Baricentr trojúhelníka.
 	/*!

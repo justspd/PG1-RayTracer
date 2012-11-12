@@ -2,9 +2,10 @@
 #include "EnvironmentSphere.h"
 
 
-EnvironmentSphere::EnvironmentSphere(Vector3 center, Vector3 up, float radius, Texture* texture) 
-	: Sphere(center, radius, up, texture)
+EnvironmentSphere::EnvironmentSphere(Vector3 center, Vector3 up, float radius, std::vector<Texture*> textures) 
+	: Sphere(center, radius, up, 0)
 {
+	this->_textures = textures;
 }
 
 Vector3 EnvironmentSphere::GetColorAt(Ray* ray) {
@@ -12,23 +13,43 @@ Vector3 EnvironmentSphere::GetColorAt(Ray* ray) {
 
 	float a = 0.8;
 
-	if (_texture == 0) {
+	if (_textures.size() < SIDE_COUNT) {
 		return outputColor;
 	}
 
-	float t = 0;
-	if (Intersect(ray, &t)) {
-		if (t > 0) {
-			Vector3 intersect = ray->GetOrigin() + t*ray->GetDirection();
-			float u = a*cos(intersect.z / this->_radius) / 3.1415;
-			float v = a*cos(intersect.x/ (this->_radius* sin(3.1415*u))) / 2*3.14;
-
-			Color4 res = _texture->get_texel(u, v);
-			outputColor = Vector3(res.r, res.g, res.b);
+	if ((fabsf(ray->GetDirection().x) >= fabsf(ray->GetDirection().y)) 
+		&& (fabsf(ray->GetDirection().x) >= fabsf(ray->GetDirection().z))) {
+			if (ray->GetDirection().x > 0.0f) {
+				Color4 o = _textures.at(SIDE_POSX)->get_texel(1.0f - (ray->GetDirection().z / ray->GetDirection().x+ 1.0f) * 0.5f, 
+					(ray->GetDirection().y / ray->GetDirection().x+ 1.0f) * 0.5f);
+				outputColor = Vector3(o.r, o.g, o.b);
+			} else if (ray->GetDirection().x < 0.0f) {
+				Color4 o = _textures.at(SIDE_NEGX)->get_texel(1.0f - (ray->GetDirection().z / ray->GetDirection().x+ 1.0f) * 0.5f,
+					1.0f - ( ray->GetDirection().y / ray->GetDirection().x + 1.0f) * 0.5f);
+				outputColor = Vector3(o.r, o.g, o.b);
+			}
+	} else if ((fabsf(ray->GetDirection().y) >= fabsf(ray->GetDirection().x)) && (fabsf(ray->GetDirection().y) >= fabsf(ray->GetDirection().z))) {
+		if (ray->GetDirection().y > 0.0f) {
+			Color4 o = _textures.at(SIDE_POSY)->get_texel((ray->GetDirection().x / ray->GetDirection().y + 1.0f) * 0.5f,
+				1.0f - (ray->GetDirection().z/ ray->GetDirection().y + 1.0f) * 0.5f);
+			outputColor = Vector3(o.r, o.g, o.b);
+		} else if (ray->GetDirection().y < 0.0f) {
+			Color4 o = _textures.at(SIDE_NEGY)->get_texel(1.0f - (ray->GetDirection().x / ray->GetDirection().y + 1.0f) * 0.5f, 
+				(ray->GetDirection().z/ray->GetDirection().y + 1.0f) * 0.5f);
+			outputColor = Vector3(o.r, o.g, o.b);
 		}
+	} else if ((fabsf(ray->GetDirection().z) >= fabsf(ray->GetDirection().x)) 
+		&& (fabsf(ray->GetDirection().z) >= fabsf(ray->GetDirection().y))) {
+			if (ray->GetDirection().z > 0.0f) {
+				Color4 o = _textures.at(SIDE_POSZ)->get_texel((ray->GetDirection().x / ray->GetDirection().z + 1.0f) * 0.5f, 
+					(ray->GetDirection().y/ray->GetDirection().z + 1.0f) * 0.5f);
+				outputColor = Vector3(o.r, o.g, o.b);
+			} else if (ray->GetDirection().z < 0.0f) {
+				Color4 o = _textures.at(SIDE_NEGZ)->get_texel((ray->GetDirection().x / ray->GetDirection().z + 1.0f) * 0.5f, 
+					1.0f - (ray->GetDirection().y /ray->GetDirection().z +1 ) * 0.5f);
+				outputColor = Vector3(o.r, o.g, o.b);
+			}
 	}
-	//Color4 c = _texture->get_texel(1.0f - (ray->GetDirection().z /ray->GetDirection().x+ 1.0f) * 0.5f, (ray->GetDirection().y /ray->GetDirection().x+ 1.0f) * 0.5f);
-	//Color4 c = _texture->get_texel(fabs(ray->GetDirection().x), fabs(ray->GetDirection().y));
 	return outputColor;
 }
 
